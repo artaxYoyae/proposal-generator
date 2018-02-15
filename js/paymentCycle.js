@@ -44,7 +44,7 @@ function PaymentCycle(gov, provider, prefix) {
     };
 
     this.getInfo(function(err, res) {
-        self.blockHeight = res.info.blocks;
+        self.blockHeight = res//res.info.blocks;
         console.log("current blockheight: " + self.blockHeight);
 
         self.updateDropdowns();
@@ -193,7 +193,14 @@ PaymentCycle.prototype.updateEndEpoch = function() {
 };
 
 PaymentCycle.prototype.getInfo = function(cb) {
-    $.getJSON(this.provider + this.prefix + "/status?q=getinfo", function( data ) {
+	//Not possible to get ATM
+    /*$.getJSON(this.provider + this.prefix + "/status?q=getinfo", function( data ) {
         cb(null, data);
-    });
+    });*/
+	
+	//Get the block height instead
+    $.getJSON(this.provider + this.prefix + "/getblockcount", function( data ) {
+        cb(null, data);
+    });	
+	
 };

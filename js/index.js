@@ -3,11 +3,11 @@ var Bitcore = require('bitcore-lib-artax');
 var socket;
 var paymentCycle;
 
-var mainnetProvider = 'http://localhost:3001';
-var mainnetPrefix = '/insight-api-artax';
+var mainnetProvider = 'http://104.131.44.238:3001';
+var mainnetPrefix = '/api';
 
-var testnetProvider = 'http://localhost:3001'; //No testnet yet
-var testnetPrefix = '/insight-api-artax';
+var testnetProvider = 'http://104.131.44.238:3001'; //No testnet yet
+var testnetPrefix = '/api';
 
 var init = function(network, provider, prefix) {
     var gov = new Bitcore.GovObject.Proposal();

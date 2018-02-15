@@ -15,8 +15,8 @@ TXListener.prototype.initSocket = function(cb) {
     var socket = this.socket;
     var confirmations = 0;
 
-    socket.on('block', function(data) {
-        console.log('block: '+ data);
+    socket.on('getblock', function(data) {
+        console.log('getblock: '+ data);
 
         self.getBlock(data, function(err, res) {
 
@@ -41,7 +41,7 @@ TXListener.prototype.getTx = function(cb) {
 
     var opts = {
         type: "GET",
-        route: "/tx/"+txid,
+        route: "/getrawtransaction?txid="+txid,
         data: {
             format: "json"
         }
@@ -54,7 +54,7 @@ TXListener.prototype.getBlock = function(hash, cb) {
 
     var opts = {
         type: "GET",
-        route: "/block/"+hash,
+        route: "/getblock?hash="+hash,
         data: {
             format: "json"
         }
