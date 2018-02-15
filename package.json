@@ -1,5 +1,5 @@
 {
-  "name": "proposal-generator",
+  "name": "proposal-generator-artax",
   "version": "1.0.2",
   "description": "",
   "main": "index.js",
@@ -10,16 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dashevo/proposal-generator.git"
+    "url": "git+https://github.com/artaxYoyae/proposal-generator-artax.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dashevo/proposal-generator/issues"
+    "url": "https://github.com/artaxYoyae/proposal-generator-artax/issues"
   },
-  "homepage": "https://github.com/dashevo/proposal-generator#readme",
+  "homepage": "https://github.com/artaxYoyae/proposal-generator-artax#readme",
   "devDependencies": {
-    "bitcore-lib-dash": "^0.15.0",
+    "bitcore-lib-artax": "artaxYoyae/bitcore-lib-artax",
     "browserify": "^14.3.0",
     "eslint": "^4.8.0"
   }

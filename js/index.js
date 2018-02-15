@@ -1,13 +1,13 @@
-var Bitcore = require('bitcore-lib-dash');
+var Bitcore = require('bitcore-lib-artax');
 
 var socket;
 var paymentCycle;
 
-var mainnetProvider = 'https://insight.dashevo.org';
-var mainnetPrefix = '/insight-api-dash';
+var mainnetProvider = 'http://localhost:3001';
+var mainnetPrefix = '/insight-api-artax';
 
-var testnetProvider = 'https://testnet-insight.dashevo.org';
-var testnetPrefix = '/insight-api-dash';
+var testnetProvider = 'http://localhost:3001'; //No testnet yet
+var testnetPrefix = '/insight-api-artax';
 
 var init = function(network, provider, prefix) {
     var gov = new Bitcore.GovObject.Proposal();

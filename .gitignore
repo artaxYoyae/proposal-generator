@@ -45,9 +45,9 @@ node_modules
 
 # Debug log from npm
 npm-debug.log
-npm-debug.log.*dashpay/client/bundle.js
-dashpay/client/node_modules
-/client/dashpay-spa/node_modules/
+npm-debug.log.*artaxYoyae/client/bundle.js
+artaxYoyae/client/node_modules
+/client/artaxYoyae-spa/node_modules/
 # Generated browserify build 
 vendor/index.js
 
