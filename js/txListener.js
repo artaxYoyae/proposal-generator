@@ -1,6 +1,5 @@
-function TXListener(socket, provider, prefix, transaction) {
+function TXListener(provider, prefix, transaction) {
 
-    this.socket = socket;
     this.provider = provider;
     this.prefix = prefix;
     this.transaction = transaction;
@@ -10,29 +9,44 @@ function TXListener(socket, provider, prefix, transaction) {
 
 }
 
+function sleep10secs() {
+  return new Promise(resolve => {
+    setTimeout(() => {}, 10000);
+  });
+}
+
+
+
 TXListener.prototype.initSocket = function(cb) {
     var self = this;
-    var socket = this.socket;
-    var confirmations = 0;
+    var currentConfirmations = 0;
 
-    socket.on('getblock', function(data) {
-        console.log('getblock: '+ data);
+	async function callGetBlock() {
+	    while ( currentConfirmations < 6 )
+		{
+			console.log('getblock: '+ data);
 
-        self.getBlock(data, function(err, res) {
+			self.getBlock(data, function(err, res) {
+				if (err) console.log("error fetching block: " + data);
+				self.confirmations = res.height - self.blockheight;
+				if(self.confirmations >= 0)
+				{
+					console.log('There is '+ self.confirmations + ' new blocks.');
+					currentConfirmations += self.confirmations;
+					$("#progressbar").progressbar({value: ((100 / 6) * currentConfirmations)});
+					console.log('confirmations: ' + currentConfirmations);
+					self.blockheight = res.height;
+				}
+			});
+			
+			await sleep10secs();
+		}
+		
+		cb();
+	}
 
-            if (err) console.log("error fetching block: " + data);
-            //self.confirmations = (res.height - self.blockheight) + 1; // compare blockHeight against transaction blockHeight
-            confirmations++;
-
-            if (confirmations >= 6) {
-              cb();
-            };
-            $("#progressbar").progressbar({value: ((100 / 6) * confirmations)});
-
-            console.log('confirmations: ' + confirmations);
-
-        });
-    });
+	
+	
 
 };
 
@@ -72,7 +86,7 @@ TXListener.prototype._fetch = function(opts,cb) {
 
         jQuery.ajax({
             type: opts.type,
-            url: provider + prefix + opts.route,
+            url: "https://cors-anywhere.herokuapp.com/" + provider + prefix + opts.route,
             data: JSON.stringify(opts.data),
             contentType: "application/json; charset=utf-8",
             crossDomain: true,

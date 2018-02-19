@@ -14,7 +14,7 @@ var init = function(network, provider, prefix) {
     gov.network = network || 'mainnet';
 
     paymentCycle = new PaymentCycle(gov, provider, prefix);
-
+/*
     socket = io(provider);
 
     socket.on('connect', function() {
@@ -25,7 +25,7 @@ var init = function(network, provider, prefix) {
     socket.on('disconnect', function() {
         console.log('connection lost');
     });
-
+*/
     return gov;
 };
 
@@ -134,7 +134,7 @@ $(document).ready(function() {
         var proposal = new ProposalGenerator(gov);
 
         var transaction = $(this).val().trim();
-        var txListener = new TXListener(socket, paymentCycle.provider, paymentCycle.prefix, transaction);
+        var txListener = new TXListener(paymentCycle.provider, paymentCycle.prefix, transaction);
 
         // check if tx exists in insight
         txListener.getTx(function(err, res) {

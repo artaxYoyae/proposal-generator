@@ -21,6 +21,7 @@
   "devDependencies": {
     "bitcore-lib-artax": "artaxYoyae/bitcore-lib-artax",
     "browserify": "^14.3.0",
+    "cors": "^2.8.4",
     "eslint": "^4.8.0"
   }
 }

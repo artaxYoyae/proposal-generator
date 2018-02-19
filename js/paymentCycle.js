@@ -198,9 +198,23 @@ PaymentCycle.prototype.getInfo = function(cb) {
         cb(null, data);
     });*/
 	
-	//Get the block height instead
-    $.getJSON(this.provider + this.prefix + "/getblockcount", function( data ) {
-        cb(null, data);
-    });	
 	
+    var opts = {
+        type: "GET",
+        route: "/getblockcount"
+    };
+
+	jQuery.ajax({
+		type: opts.type,
+		url: "https://cors-anywhere.herokuapp.com/"+this.provider + this.prefix + opts.route,
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8", //application/json; charset=utf-8",
+		crossDomain: true,
+		dataType: "text",
+		success: function (result) {
+			cb(null, result);
+		},
+		error: function (error) {
+			cb(error, null);
+		}
+	});
 };
